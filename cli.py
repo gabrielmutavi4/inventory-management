@@ -162,26 +162,27 @@ search_parser = subparsers.add_parser("search")
 search_parser.add_argument("barcode")
 
 
-args = parser.parse_args()
+def main():
+    args = parser.parse_args()
+
+    if args.command == "list":
+        view_inventory()
+
+    elif args.command == "get":
+        get_item(args.id)
+
+    elif args.command == "add":
+        add_item(args)
+
+    elif args.command == "update":
+        update_item(args)
+
+    elif args.command == "delete":
+        delete_item(args.id)
+
+    elif args.command == "search":
+        search_product(args.barcode)
 
 
-if args.command == "list":
-    view_inventory()
-
-elif args.command == "get":
-    get_item(args.id)
-
-elif args.command == "add":
-    add_item(args)
-
-elif args.command == "update":
-    update_item(args)
-
-elif args.command == "delete":
-    delete_item(args.id)
-
-elif args.command == "search":
-    search_product(args.barcode)
-
-else:
-    parser.print_help()
+if __name__ == "__main__":
+    main()       
